@@ -20,8 +20,26 @@ function preload() {
     game.load.image('smiley', 'assets/Smiley_Face.JPG');
 }
 
+var smiley;
+
 function create() {
-    game.add.sprite(0, 0, 'smiley');
+    smiley = game.add.sprite(0, 0, 'smiley');
+
+    tweenA = game.add.tween(smiley).to( { x: 600, y: 0 }, 2000, "Quart.easeOut");
+    tweenB = game.add.tween(smiley).to( { x: 0, y: 100 }, 2000, "Quart.easeOut");
+    tweenC = game.add.tween(smiley).to( { angle: 360 }, 2000, "Quart.easeOut");
+
+    tweenA.chain(tweenB);
+    tweenB.chain(tweenC);
+    tweenC.chain(tweenA);
+
+    startTween();
+}
+
+function startTween() {
+
+    tweenA.start();
+
 }
 
 function update() {
